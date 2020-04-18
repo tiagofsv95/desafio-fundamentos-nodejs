@@ -1,5 +1,11 @@
 import Transaction from '../models/Transaction';
 
+interface CreateTransactionDTO {
+  title: string;
+  value: number;
+  type: 'income' | 'outcome';
+}
+
 interface Balance {
   income: number;
   outcome: number;
@@ -37,7 +43,7 @@ class TransactionsRepository {
     return balance;
   }
 
-  public create({ title, type, value }: Transaction): Transaction {
+  public create({ title, type, value }: CreateTransactionDTO): Transaction {
     const transaction = new Transaction({ title, type, value });
 
     this.transactions.push(transaction);
